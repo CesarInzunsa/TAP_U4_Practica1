@@ -27,7 +27,7 @@ public class Ventana extends javax.swing.JFrame {
         this.setTitle("TAP U4 Practica 1");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
+        
         modelo.addColumn("IDPRODUCTO");
         modelo.addColumn("AUTONUM");
         modelo.addColumn("DESCRIPCION");
@@ -56,7 +56,7 @@ public class Ventana extends javax.swing.JFrame {
         int totalRenglones = modelo.getRowCount();
 
         for (int i = 0; i < totalRenglones; i++) {
-            modelo.removeRow(i);
+            modelo.removeRow(0);
         }
 
         for (int i = 0; i < registros.size(); i++) {
@@ -416,7 +416,7 @@ public class Ventana extends javax.swing.JFrame {
                 actualizarTabla();
                 jButtonBuscar.setEnabled(true);
                 jTextFieldBuscar.setEnabled(true);
-
+                jTextFieldBuscar.setText("");
                 jTextField1.setText("");
                 jTextField2.setText("");
                 jTextField3.setText("");

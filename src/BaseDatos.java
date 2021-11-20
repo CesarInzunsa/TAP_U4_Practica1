@@ -58,7 +58,7 @@ public class BaseDatos {
         Productos producto = new Productos();
         
         try {
-            cursor = transaccion.executeQuery("SELECT * FROM PRODUCTOS WHERE IDPRODUCTOS ="+id);
+            cursor = transaccion.executeQuery("SELECT * FROM PRODUCTOS WHERE IDPRODUCTOS = "+id);
             if (cursor.next()) {
                 producto.autoNum = Integer.parseInt(cursor.getString(2));
                 producto.descripcion = cursor.getString(3);
@@ -75,7 +75,7 @@ public class BaseDatos {
     public boolean eliminar(int id){
         
         try {
-            transaccion.executeQuery("DELETE FROM PRODUCTOS WHERE IDPRODUCTOS = "+id);
+            transaccion.execute("DELETE FROM PRODUCTOS WHERE IDPRODUCTOS = "+id);
         } catch (SQLException ex) {
             return false;
         }
@@ -89,7 +89,7 @@ public class BaseDatos {
         String actualizar = "UPDATE PRODUCTOS SET AUTONUM = " + p.autoNum + ", DESCRIPCION = '" + p.descripcion + "', PRECIO = " + p.precio + ", EXISTENCIA = " + p.existencia + " WHERE IDPRODUCTOS = " + p.idProductos;
         
         try {
-            transaccion.executeQuery(actualizar);
+            transaccion.execute(actualizar);
         } catch (SQLException ex) {
             return false;
         }
