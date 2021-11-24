@@ -25,7 +25,7 @@ public class BaseDatos {
     }
     
     public boolean insertar(Productos p) {
-        String insertar = "INSERT INTO PRODUCTOS VALUES (NULL,'" + p.autoNum + "','" + p.descripcion + "','" + p.precio + "'," + p.existencia + ")";
+        String insertar = "INSERT INTO PRODUCTOS VALUES (NULL,'" + p.descripcion + "', " + p.precio + ", " + p.existencia + ")";
 
         try {
             transaccion.execute(insertar);
@@ -43,7 +43,7 @@ public class BaseDatos {
             cursor = transaccion.executeQuery("SELECT * FROM PRODUCTOS");
             if (cursor.next()) {
                 do {
-                    String[] renglon = {cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)};
+                    String[] renglon = {cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)};
                     resultado.add(renglon);
                 } while (cursor.next());
             }
@@ -60,10 +60,9 @@ public class BaseDatos {
         try {
             cursor = transaccion.executeQuery("SELECT * FROM PRODUCTOS WHERE IDPRODUCTOS = "+id);
             if (cursor.next()) {
-                producto.autoNum = Integer.parseInt(cursor.getString(2));
-                producto.descripcion = cursor.getString(3);
-                producto.precio = Float.parseFloat(cursor.getString(4));
-                producto.existencia = Integer.parseInt(cursor.getString(5));
+                producto.descripcion = cursor.getString(2);
+                producto.precio = Float.parseFloat(cursor.getString(3));
+                producto.existencia = Integer.parseInt(cursor.getString(4));
             }
         } catch (SQLException ex) {
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,7 +85,7 @@ public class BaseDatos {
     
     public boolean actualizar(Productos p){
         
-        String actualizar = "UPDATE PRODUCTOS SET AUTONUM = " + p.autoNum + ", DESCRIPCION = '" + p.descripcion + "', PRECIO = " + p.precio + ", EXISTENCIA = " + p.existencia + " WHERE IDPRODUCTOS = " + p.idProductos;
+        String actualizar = "UPDATE PRODUCTOS SET DESCRIPCION = '" + p.descripcion + "', PRECIO = " + p.precio + ", EXISTENCIA = " + p.existencia + " WHERE IDPRODUCTOS = " + p.idProductos;
         
         try {
             transaccion.execute(actualizar);

@@ -10,13 +10,11 @@
  */
 public class Productos {
     int idProductos;
-    int autoNum;
     String descripcion;
     float precio;
     int existencia;
     
-    public Productos(int autoNum, String descripcion, float precio, int existencia){
-        this.autoNum = autoNum;
+    public Productos(String descripcion, float precio, int existencia){
         this.descripcion = descripcion;
         this.precio = precio;
         this.existencia = existencia;
